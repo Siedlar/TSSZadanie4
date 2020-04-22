@@ -12,16 +12,33 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- Step 3: Add support for component scanning -->
+    <context:annotation-config />
     <context:component-scan base-package="com.siedlar" />
-
     <!-- Step 4: Add support for conversion, formatting and validation support -->
-    <mvc:annotation-driven/>
 
     <!-- Step 5: Define Spring MVC view resolver -->
+    <mvc:annotation-driven/>
     <bean
             class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/view/" />
         <property name="suffix" value=".jsp" />
+    </bean>
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" autowire="byName">
+        <property name="driverClassName">
+            <value>com.mysql.jdbc.Driver</value>
+        </property>
+
+        <property name="url">
+            <value>jdbc:mysql://192.168.0.39:3306/cars?serverTimezone=UTC</value>
+        </property>
+
+        <property name="username">
+            <value>tss</value>
+        </property>
+
+        <property name="password">
+            <value>password</value>
+        </property>
     </bean>
 </beans>
 
