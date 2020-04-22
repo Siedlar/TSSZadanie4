@@ -4,18 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 public class Car {
-    private int idcars;
+    private int idCars;
 
-    public int getId() {
-        return idcars;
+    public int getidCars() {
+        return idCars;
     }
 
-    public void setId(int id) {
-        this.idcars = id;
+    public void setidCars(int id) {
+        this.idCars = id;
     }
 
-    public Car(int id, String nazwa, String marka, int konieMechaniczne, double pojemnosc, int cena, int rokProdukcji) {
-        this.idcars = id;
+    public Car(int idCars, String nazwa, String marka, int konieMechaniczne, double pojemnosc, int cena, int rokProdukcji) {
+        this.idCars = idCars;
         this.nazwa = nazwa;
         this.marka = marka;
         this.konieMechaniczne = konieMechaniczne;
@@ -88,4 +88,8 @@ public class Car {
         this.marka = marka;
     }
 
+    @Override
+    public String toString() {
+        return idCars+nazwa+marka;
+    }
 }

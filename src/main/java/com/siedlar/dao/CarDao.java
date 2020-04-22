@@ -12,6 +12,6 @@ public interface CarDao {
 
         public Car get(int carId) throws SQLException;
 
-        public List<Car> list();
+        public List<Car> list() throws SQLException;
 
 }

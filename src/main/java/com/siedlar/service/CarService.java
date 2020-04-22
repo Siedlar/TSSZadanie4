@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
+import java.util.List;
+
 @Service("serwis")
 public class CarService {
     private CarDao carDao;
@@ -15,7 +18,7 @@ public class CarService {
 
     @Autowired
     public CarService(CarDao carDao) {
-        System.out.println("injecting car"+carDao.getClass().toString());
+        System.out.println("injecting cardao"+carDao.getClass().toString());
         this.carDao = carDao;
     }
 
@@ -27,6 +30,8 @@ public class CarService {
         this.carDao = carDao;
     }
 
-
+    public List wyswietl() throws SQLException {
+       return carDao.list();
+    }
 
 }

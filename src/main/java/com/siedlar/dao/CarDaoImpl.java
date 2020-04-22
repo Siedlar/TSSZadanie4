@@ -9,17 +9,21 @@ import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 @Repository
 public class CarDaoImpl implements CarDao {
 
     private DataSource dataSource;
 
+    public CarDaoImpl() {
+        System.out.println("tworzenie cardaoimpl");
+    }
+
     @Autowired
     public void setDataSource(DataSource dataSource) {
         System.out.println("Ustaw datasource");
         this.dataSource = dataSource;
-        System.out.println(dataSource.toString());
     }
     public DataSource getDataSource() {
         return dataSource;
@@ -42,7 +46,7 @@ public class CarDaoImpl implements CarDao {
         Statement statement=conn.createStatement();
         ResultSet resultSet=statement.executeQuery("Select * from cars where idcars = 1 ");
         while(resultSet.next()){
-            car.setId(resultSet.getInt(1));
+            car.setidCars(resultSet.getInt(1));
             car.setNazwa(resultSet.getString(2));
             car.setMarka(resultSet.getString(3));
             car.setKonieMechaniczne(resultSet.getInt(4));
@@ -54,7 +58,23 @@ public class CarDaoImpl implements CarDao {
     }
 
     @Override
-    public List<Car> list() {
-        return null;
+    public List<Car> list() throws SQLException {
+        List<Car> list=new ArrayList<>();
+        Car car=null;
+        Connection conn=dataSource.getConnection();
+        Statement statement=conn.createStatement();
+        ResultSet resultSet=statement.executeQuery("Select * from cars ");
+        while(resultSet.next()){
+           car=new Car();
+            car.setidCars(resultSet.getInt(1));
+            car.setNazwa(resultSet.getString(2));
+            car.setMarka(resultSet.getString(3));
+            car.setKonieMechaniczne(resultSet.getInt(4));
+            car.setPojemnosc(resultSet.getDouble(5));
+            car.setCena(resultSet.getInt(6));
+            car.setRokProdukcji(resultSet.getInt(7));
+            list.add(car);
+        }
+        return list;
     }
 }

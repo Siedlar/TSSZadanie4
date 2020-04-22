@@ -18,13 +18,11 @@
     ${czas.toString()}
     <hr>
 </fmt:bundle>
-${autko.id}
-${autko.nazwa}
-${autko.marka}
-${autko.cena}
-${autko.konieMechaniczne}
-${autko.rokProdukcji}
-${autko.pojemnosc}
+<c:forEach items="${lista}" var="item">
+    ${item.idCars}
+    ${item.marka}
+    ${item.nazwa}<br>
+</c:forEach>
 
 <a href="dodajAuto">Dodaj auto</a>
 <a href="usunAuto">Usun auto</a>
