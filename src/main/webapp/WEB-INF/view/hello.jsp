@@ -18,6 +18,8 @@
     ${czas.toString()}
     <hr>
 </fmt:bundle>
-
+<a href="dodajAuto">Dodaj auto</a>
+<a href="usunAuto">Usun auto</a>
+    <a href="wyswietlAuta">Wyswietl auta</a>
 </body>
 </html>
