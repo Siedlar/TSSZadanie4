@@ -14,7 +14,7 @@ public class Car {
         this.idCars = id;
     }
 
-    public Car(int idCars, String nazwa, String marka, int konieMechaniczne, double pojemnosc, int cena, int rokProdukcji) {
+    public Car(int idCars, String marka,String nazwa, int konieMechaniczne, double pojemnosc, int cena, int rokProdukcji) {
         this.idCars = idCars;
         this.nazwa = nazwa;
         this.marka = marka;

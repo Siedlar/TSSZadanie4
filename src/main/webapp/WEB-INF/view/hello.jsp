@@ -18,14 +18,47 @@
     ${czas.toString()}
     <hr>
 </fmt:bundle>
+<table border="1" cellpadding="5">
+    <caption><h2>Lista samochodów</h2></caption>
+    <tr>
+    <th>
+        <p>ID</p>
+    </th>
+        <th>
+            <p>Marka</p>
+        </th>
+        <th>
+            <p>Model</p>
+        </th>
+        <th>
+            <p>Konie Mechaniczne</p>
+        </th>
+        <th>
+            <p>Pojemnosc</p>
+        </th>
+        <th>
+            <p>Cena</p>
+        </th>
+        <th>
+            <p>Rok Produkcji</p>
+        </th>
+    </tr>
 <c:forEach items="${lista}" var="item">
-    ${item.idCars}
-    ${item.marka}
-    ${item.nazwa}<br>
-</c:forEach>
+    <tr>
+  <td> ${item.idCars}</td>
+        <td> ${item.nazwa}</td>
+        <td>  ${item.marka}</td>
+        <td> ${item.konieMechaniczne}</td>
+        <td>  ${item.pojemnosc}</td>
+        <td> ${item.cena}</td>
+        <td>  ${item.rokProdukcji}</td>
 
-<a href="dodajAuto">Dodaj auto</a>
-<a href="usunAuto">Usun auto</a>
-    <a href="wyswietlAuta">Wyswietl auta</a>
+    </tr>
+</c:forEach>
+</table>
+<br>
+<h3><a href="dodajAuto">Dodaj auto</a><br></h3>
+<h3><a href="usunAuto">Usun auto</a><br></h3>
+<h3> <a href="wyswietlAuta">Wyswietl auta</a></h3>
 </body>
 </html>

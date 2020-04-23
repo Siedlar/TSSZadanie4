@@ -21,8 +21,6 @@ class HelloController {
         LocalDate localDate=LocalDate.now();
         ClassPathXmlApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:spring-mvc-demo-servlet.xml");
       CarService carService=ctx.getBean("serwis", CarService.class);
-      Car car=carService.getCarDao().get(1);
-        themodel.addAttribute("autko",car);
         themodel.addAttribute("lista",carService.wyswietl());
         carService.wyswietl().forEach((x)-> System.out.println(x));
         return "hello";
