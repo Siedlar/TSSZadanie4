@@ -1,6 +1,7 @@
 package com.siedlar.service;
 
 import com.siedlar.dao.CarDao;
+import com.siedlar.entity.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,11 @@ public class CarService {
     public List wyswietl() throws SQLException {
        return carDao.list();
     }
+    public void dodaj(Car car) throws SQLException {
+    carDao.saveOrUpdate(car);
+    }
 
+    public void usun(Integer integer) throws SQLException {
+        carDao.delete(integer);
+    }
 }

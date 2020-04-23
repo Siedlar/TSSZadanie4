@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Siedlar
@@ -9,9 +10,14 @@
 <html>
 <head>
     <title>Title</title>
-    <a href="${pageContext.request.contextPath}/">Wroc</a>
+
 </head>
 <body>
+<c:forEach var="zmienna" items="${lista}">
+   <p>${zmienna.nazwa} ${zmienna.marka} ${zmienna.konieMechaniczne} ${zmienna.pojemnosc} ${zmienna.rokProdukcji} ${zmienna.cena}</p>
+</c:forEach>
 
+
+<a href="${pageContext.request.contextPath}/">Wroc</a>
 </body>
 </html>

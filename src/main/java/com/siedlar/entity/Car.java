@@ -5,16 +5,14 @@ import org.springframework.stereotype.Component;
 
 public class Car {
     private int idCars;
+    private String nazwa;
+    private String marka;
+    private int konieMechaniczne;
+    private double pojemnosc;
+    private int cena;
+    private int rokProdukcji;
 
-    public int getidCars() {
-        return idCars;
-    }
-
-    public void setidCars(int id) {
-        this.idCars = id;
-    }
-
-    public Car(int idCars, String marka,String nazwa, int konieMechaniczne, double pojemnosc, int cena, int rokProdukcji) {
+    public Car(int idCars, String nazwa, String marka, int konieMechaniczne, double pojemnosc, int cena, int rokProdukcji) {
         this.idCars = idCars;
         this.nazwa = nazwa;
         this.marka = marka;
@@ -24,12 +22,13 @@ public class Car {
         this.rokProdukcji = rokProdukcji;
     }
 
-    private String nazwa;
-    private String marka;
-    private int konieMechaniczne;
-    private double pojemnosc;
-    private int cena;
-    private int rokProdukcji;
+    public int getIdCars() {
+        return idCars;
+    }
+
+    public void setIdCars(int idCars) {
+        this.idCars = idCars;
+    }
     public String getMarka() {
         return marka;
     }
@@ -92,4 +91,5 @@ public class Car {
     public String toString() {
         return idCars+nazwa+marka;
     }
+
 }

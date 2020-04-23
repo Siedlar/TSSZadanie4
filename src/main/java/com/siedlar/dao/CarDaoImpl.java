@@ -30,13 +30,26 @@ public class CarDaoImpl implements CarDao {
     }
 
     @Override
-    public void saveOrUpdate(Car car) {
-
+    public void saveOrUpdate(Car car) throws SQLException {
+        Connection conn=dataSource.getConnection();
+        PreparedStatement statement=conn.prepareStatement("Insert into cars values(?,?,?,?,?,?,?)");
+        statement.setInt(1,car.getIdCars());
+        statement.setString(2,car.getNazwa());
+        statement.setString(3,car.getMarka());
+        statement.setInt(4,car.getKonieMechaniczne());
+        statement.setDouble(5,car.getPojemnosc());
+        statement.setInt(6,car.getCena());
+        statement.setInt(7,car.getRokProdukcji());
+        statement.execute();
     }
 
     @Override
-    public void delete(int carId) {
-
+    public void delete(int carId) throws SQLException {
+        Connection conn=dataSource.getConnection();
+        PreparedStatement statement=conn.prepareStatement("Delete from cars where idcars=(?)");
+        statement.setInt(1,carId);
+        statement.execute();
+        System.out.println("Usunieto");
     }
 
     @Override
@@ -46,7 +59,7 @@ public class CarDaoImpl implements CarDao {
         Statement statement=conn.createStatement();
         ResultSet resultSet=statement.executeQuery("Select * from cars where idcars = 1 ");
         while(resultSet.next()){
-            car.setidCars(resultSet.getInt(1));
+            car.setIdCars(resultSet.getInt(1));
             car.setNazwa(resultSet.getString(2));
             car.setMarka(resultSet.getString(3));
             car.setKonieMechaniczne(resultSet.getInt(4));
@@ -66,7 +79,7 @@ public class CarDaoImpl implements CarDao {
         ResultSet resultSet=statement.executeQuery("Select * from cars ");
         while(resultSet.next()){
            car=new Car();
-            car.setidCars(resultSet.getInt(1));
+            car.setIdCars(resultSet.getInt(1));
             car.setNazwa(resultSet.getString(2));
             car.setMarka(resultSet.getString(3));
             car.setKonieMechaniczne(resultSet.getInt(4));
