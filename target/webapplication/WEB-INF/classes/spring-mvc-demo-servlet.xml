@@ -2,26 +2,41 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
-    	http://www.springframework.org/schema/beans/spring-beans.xsd
-    	http://www.springframework.org/schema/context
-    	http://www.springframework.org/schema/context/spring-context.xsd
-    	http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!-- Step 3: Add support for component scanning -->
     <context:annotation-config />
     <context:component-scan base-package="com.siedlar" />
     <!-- Step 4: Add support for conversion, formatting and validation support -->
-
     <!-- Step 5: Define Spring MVC view resolver -->
     <mvc:annotation-driven/>
+    <tx:annotation-driven transaction-manager="myTransactionManager" />
     <bean
             class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/view/" />
         <property name="suffix" value=".jsp" />
+    </bean>
+    <bean id="currentSession" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource">
+        </property>
+        <property name="packagesToScan" value="com.siedlar.entity">
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="show_sql">true</prop>
+            </props>
+        </property>
     </bean>
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" autowire="byName">
         <property name="driverClassName">
@@ -29,16 +44,20 @@
         </property>
 
         <property name="url">
-            <value>jdbc:mysql://192.168.0.39:3306/cars?serverTimezone=UTC</value>
+            <value>jdbc:mysql://52.29.239.198/sql7335507?serverTimezone=UTC</value>
         </property>
 
         <property name="username">
-            <value>tss</value>
+            <value>sql7335507</value>
         </property>
 
         <property name="password">
-            <value>password</value>
+            <value>NWTri1zfJk</value>
         </property>
+    </bean>
+    <bean id="myTransactionManager"
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="currentSession"/>
     </bean>
 </beans>
 

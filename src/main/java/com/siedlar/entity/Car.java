@@ -3,17 +3,39 @@ package com.siedlar.entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "cars")
 public class Car {
-    private int idCars;
+    @Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(name="marka")
     private String nazwa;
+    @Column(name="model")
     private String marka;
+    @Column(name="konie_mechaniczne")
     private int konieMechaniczne;
+    @Column(name="pojemnosc")
     private double pojemnosc;
+    @Column(name="cena")
     private int cena;
+    @Column(name="rokprodukcji")
     private int rokProdukcji;
 
+    public Car(String nazwa, String marka, int konieMechaniczne, double pojemnosc, int cena, int rokProdukcji) {
+        this.nazwa = nazwa;
+        this.marka = marka;
+        this.konieMechaniczne = konieMechaniczne;
+        this.pojemnosc = pojemnosc;
+        this.cena = cena;
+        this.rokProdukcji = rokProdukcji;
+    }
+
     public Car(int idCars, String nazwa, String marka, int konieMechaniczne, double pojemnosc, int cena, int rokProdukcji) {
-        this.idCars = idCars;
+        this.id = idCars;
         this.nazwa = nazwa;
         this.marka = marka;
         this.konieMechaniczne = konieMechaniczne;
@@ -23,11 +45,11 @@ public class Car {
     }
 
     public int getIdCars() {
-        return idCars;
+        return id;
     }
 
     public void setIdCars(int idCars) {
-        this.idCars = idCars;
+        this.id = idCars;
     }
     public String getMarka() {
         return marka;
@@ -89,7 +111,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return idCars+nazwa+marka;
+        return id+nazwa+marka;
     }
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -22,23 +23,15 @@ public class CarService {
         System.out.println("injecting cardao"+carDao.getClass().toString());
         this.carDao = carDao;
     }
-
-    public CarDao getCarDao() {
-        return carDao;
+    public List<Car> pobierzListe(){
+        return carDao.getCars();
     }
-
-    public void setCarDao(CarDao carDao) {
-        this.carDao = carDao;
+    public void dodaj(Car car){
+carDao.dodaj(car);
     }
-
-    public List wyswietl() throws SQLException {
-       return carDao.list();
-    }
-    public void dodaj(Car car) throws SQLException {
-    carDao.saveOrUpdate(car);
-    }
-
-    public void usun(Integer integer) throws SQLException {
-        carDao.delete(integer);
+    @Transactional
+    @org.springframework.transaction.annotation.Transactional
+    public void usun(Integer integer){
+        carDao.usun(integer);
     }
 }

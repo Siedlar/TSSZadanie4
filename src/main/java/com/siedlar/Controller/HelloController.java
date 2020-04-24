@@ -23,8 +23,7 @@ class HelloController {
         LocalDate localDate=LocalDate.now();
         ClassPathXmlApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:spring-mvc-demo-servlet.xml");
       CarService carService=ctx.getBean("serwis", CarService.class);
-        themodel.addAttribute("lista",carService.wyswietl());
-        carService.wyswietl().forEach((x)-> System.out.println(x));
+        themodel.addAttribute("lista",carService.pobierzListe());
         return "hello";
     }
     @RequestMapping("/dodajAuto")
@@ -43,7 +42,7 @@ class HelloController {
     public String dodajUzytkowika(Model themodel) throws SQLException {
         ClassPathXmlApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:spring-mvc-demo-servlet.xml");
         CarService carService=ctx.getBean("serwis", CarService.class);
-        List<Car> listaAut=carService.wyswietl();
+        List<Car> listaAut=carService.pobierzListe();
         themodel.addAttribute("lista",listaAut);
         return "wyswietl-auta";
     }
