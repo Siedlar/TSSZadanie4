@@ -27,8 +27,13 @@ public class CarService {
     public void dodaj(Car car){
 carDao.dodaj(car);
     }
-    @Transactional
     public void usun(Integer integer){
         carDao.usun(integer);
+    }
+    public void usunWszystko(){
+        carDao.usunWszystko();
+    }
+    public Car getCar(Integer integer){
+        return carDao.getCar(integer);
     }
 }

@@ -8,9 +8,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -23,6 +25,7 @@ class HelloController {
         LocalDate localDate=LocalDate.now();
         ClassPathXmlApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:spring-mvc-demo-servlet.xml");
       CarService carService=ctx.getBean("serwis", CarService.class);
+        System.out.println(   carService.getCar(2));
         themodel.addAttribute("lista",carService.pobierzListe());
         return "hello";
     }
@@ -48,13 +51,15 @@ class HelloController {
     }
 
     @RequestMapping("/dodano")
-    public String dodano(@ModelAttribute("auto") Car car,Model model) throws SQLException {
+    public String dodano(@Valid @ModelAttribute("auto") Car car,BindingResult bindingResult, Model model ) throws SQLException {
+    if(bindingResult.hasErrors()==true){
+        return "dodaj-auto";}else {
         ClassPathXmlApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:spring-mvc-demo-servlet.xml");
         CarService carService=ctx.getBean("serwis", CarService.class);
-carService.dodaj(car);
-      model.addAttribute("auto",car);
-
+        carService.dodaj(car);
+        model.addAttribute("auto",car);
         return "dodano";
+    }
     }
 
     @RequestMapping("/usunieto")
@@ -65,5 +70,12 @@ carService.dodaj(car);
         model.addAttribute("value",car.getIdCars());
 
         return "usunieto";
+    }
+    @RequestMapping("/usunWszystko")
+    public String usunWszystko(){
+        ClassPathXmlApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:spring-mvc-demo-servlet.xml");
+        CarService carService=ctx.getBean("serwis", CarService.class);
+        carService.usunWszystko();
+        return "usunietoWszystko";
     }
 }

@@ -53,5 +53,8 @@
             <value>NWTri1zfJk</value>
         </property>
     </bean>
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames" value="wiadomosci"></property>
+            </bean>
 </beans>
 

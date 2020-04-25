@@ -37,10 +37,10 @@
             <p>Pojemnosc</p>
         </th>
         <th>
-            <p>Cena</p>
+            <p>Rok Produkcji</p>
         </th>
         <th>
-            <p>Rok Produkcji</p>
+            <p>Cena</p>
         </th>
     </tr>
 <c:forEach items="${lista}" var="item">
@@ -50,8 +50,8 @@
         <td>  ${item.marka}</td>
         <td> ${item.konieMechaniczne}</td>
         <td>  ${item.pojemnosc}</td>
-        <td> ${item.cena}</td>
-        <td>  ${item.rokProdukcji}</td>
+        <td> ${item.rokProdukcji}</td>
+        <td>  ${item.cena}</td>
 
     </tr>
 </c:forEach>
@@ -60,5 +60,6 @@
 <h3><a href="dodajAuto">Dodaj auto</a><br></h3>
 <h3><a href="usunAuto">Usun auto</a><br></h3>
 <h3> <a href="wyswietlAuta">Wyswietl auta</a></h3>
+<h3> <a href="${pageContext.request.contextPath}/usunWszystko">Usun wszystkie auta</a></h3>
 </body>
 </html>

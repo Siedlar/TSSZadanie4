@@ -9,4 +9,7 @@ public interface CarDao {
        List<Car> getCars();
        void dodaj(Car car);
        void usun(Integer integer);
+       void usunWszystko();
+       void update(Car car);
+       Car getCar(Integer integer);
 }

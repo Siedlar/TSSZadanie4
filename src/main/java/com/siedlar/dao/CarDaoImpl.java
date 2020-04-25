@@ -61,6 +61,30 @@ public class CarDaoImpl implements CarDao {
 
         }
     }
+
+    @Override
+    public void usunWszystko() {
+        Session session = currentSession.openSession();
+        try {
+            Query query = session.createQuery("delete from Car");
+            transaction = session.beginTransaction();
+            query.executeUpdate();
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+    }
+
+    @Override
+    public void update(Car car) {
+    }
+
+    @Override
+    public Car getCar(Integer integer) {
+        Session session = currentSession.openSession();
+      Car car=session.get(Car.class,integer);
+return car;
+    }
 }
 
 

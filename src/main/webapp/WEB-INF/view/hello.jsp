@@ -60,5 +60,6 @@
 <h3><a href="dodajAuto">Dodaj auto</a><br></h3>
 <h3><a href="usunAuto">Usun auto</a><br></h3>
 <h3> <a href="wyswietlAuta">Wyswietl auta</a></h3>
+<h3> <a href="${pageContext.request.contextPath}/usunWszystko">Usun wszystkie auta</a></h3>
 </body>
 </html>
