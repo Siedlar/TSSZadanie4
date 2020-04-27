@@ -40,7 +40,7 @@ public class CarDaoImpl implements CarDao {
         Session session = currentSession.openSession();
         transaction = session.beginTransaction();
         try {
-            session.save(car);
+            session.saveOrUpdate(car);
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();

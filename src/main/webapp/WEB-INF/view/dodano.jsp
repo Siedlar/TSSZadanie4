@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<p>${auto.nazwa} ${auto.marka}</p>
+<p>Dodano auto ${auto.nazwa} ${auto.marka} o cenie ${auto.cena} złotych</p>
 <a href="${pageContext.request.contextPath}/">Wroc</a>
 </body>
 </html>

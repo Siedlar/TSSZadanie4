@@ -51,7 +51,7 @@
         <td> ${item.konieMechaniczne}</td>
         <td>  ${item.pojemnosc}</td>
         <td> ${item.rokProdukcji}</td>
-        <td>  ${item.cena}</td>
+        <td>  ${item.cena} zł</td>
 
     </tr>
 </c:forEach>
@@ -61,5 +61,6 @@
 <h3><a href="usunAuto">Usun auto</a><br></h3>
 <h3> <a href="wyswietlAuta">Wyswietl auta</a></h3>
 <h3> <a href="${pageContext.request.contextPath}/usunWszystko">Usun wszystkie auta</a></h3>
+<h3> <a href="aktualizujForm">Zaaktualizuj wybrane auto</a></h3>
 </body>
 </html>

@@ -20,7 +20,8 @@
 </head>
 <body>
 <h1>Dodaj samochod</h1>
-<form:form action="${pageContext.request.contextPath}/dodano" modelAttribute="auto">
+<form:form action="${pageContext.request.contextPath}/dodano" modelAttribute="auto" method="post">
+    <form:hidden path="idCars"/>
     <p><b>Marka samochodu  </b><form:input path="nazwa" /> <form:errors path="nazwa" cssClass="error"/> </p> <br>
     <p><b>Model samochodu  </b><form:input path="marka"></form:input> <form:errors path="marka" cssClass="error"/></p> <br>
     <p><b>Konie mechaniczne  </b> <form:input path="konieMechaniczne"></form:input>  <form:errors path="konieMechaniczne" cssClass="error"/></p><br>

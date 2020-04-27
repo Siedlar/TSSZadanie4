@@ -1,10 +1,7 @@
 package com.siedlar.Controller;
 
-import com.siedlar.dao.CarDao;
-import com.siedlar.dao.CarDaoImpl;
 import com.siedlar.entity.Car;
 import com.siedlar.service.CarService;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -77,5 +74,20 @@ class HelloController {
         CarService carService=ctx.getBean("serwis", CarService.class);
         carService.usunWszystko();
         return "usunietoWszystko";
+    }
+    @RequestMapping("/aktualizujForm")
+    public String aktualizujForm(Model model){
+        Car car=new Car();
+        model.addAttribute("auto",car);
+        return "aktualizujForm";
+    }
+    @RequestMapping("/aktualizuj")
+    public String aktualizuj(@ModelAttribute("auto") Car car,Model model){
+        ClassPathXmlApplicationContext ctx=new ClassPathXmlApplicationContext("classpath:spring-mvc-demo-servlet.xml");
+        CarService carService=ctx.getBean("serwis", CarService.class);
+        int a=car.getIdCars();
+        car=carService.getCar(a);
+        model.addAttribute("auto",car);
+        return "dodaj-auto";
     }
 }
